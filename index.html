@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080a0e">
+<title>DUNG NGUYEN • ElevenLabs TTS Studio V11.3 Final</title>
+<style>
+:root{--bg:#080a0e;--card:#121722;--line:#252d3a;--text:#f5f7fb;--muted:#98a2b3;--accent:#7657ff;--good:#32d583;--bad:#ff5d73;--warn:#ffc857;--blue:#4ea1ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#18152e 0,#080a0e 48%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}.wrap{max-width:1180px;margin:auto;padding:18px 15px 60px}.hero{padding:8px 2px 18px}.badge{display:inline-block;border:1px solid #40376d;background:#17142b;color:#cfc7ff;border-radius:999px;padding:6px 10px;font-size:11px}.hero h1{font-size:30px;margin:12px 0 5px}.sub{color:var(--muted);line-height:1.5}.layout{display:grid;grid-template-columns:330px 1fr;gap:14px}.card{background:rgba(18,23,34,.96);border:1px solid var(--line);border-radius:18px;padding:15px;margin-bottom:14px;box-shadow:0 16px 50px rgba(0,0,0,.2)}h2,h3{margin:0 0 12px}label{font-size:12px;color:var(--muted);display:block;margin:10px 0 6px}input,select,textarea{width:100%;background:#0c1017;color:#fff;border:1px solid #2a3342;border-radius:11px;padding:11px;font:inherit;outline:none}textarea{min-height:290px;resize:vertical;line-height:1.65}button{border:0;border-radius:11px;padding:10px 12px;background:var(--accent);color:white;font-weight:750;cursor:pointer}button.secondary{background:#252d39}button.green{background:#146b4a}button.blue{background:#174e82}button.danger{background:#642936}button:disabled{opacity:.45;cursor:not-allowed}.row{display:flex;gap:8px}.row>*{flex:1}.profiles{display:flex;flex-direction:column;gap:7px}.profile{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px;border:1px solid #2a3340;background:#0d1118;border-radius:12px;cursor:pointer}.profile.active{border-color:#7657ff;background:#18142d}.profile b{font-size:13px}.tiny{font-size:11px;color:var(--muted)}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.actions button{flex:1;min-width:105px}.status{font-size:13px;color:var(--muted);line-height:1.5}.ok{color:var(--good)}.bad{color:var(--bad)}.warn{color:var(--warn)}.usagebar{height:8px;background:#252c37;border-radius:99px;overflow:hidden;margin-top:9px}.usagebar>div{height:100%;width:0;background:var(--accent);transition:.3s}.counter{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-top:6px}.result{border:1px solid #2b3442;background:#0c1017;border-radius:12px;padding:11px;margin-top:10px}.result audio{width:100%;margin-top:8px}.result .result-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.result .download-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;color:#fff;text-decoration:none;background:#174e82;border:1px solid #2c6fae;padding:8px 11px;border-radius:9px;font-size:12px;font-weight:750}.result .download-btn:hover{background:#21649e}.result .download-btn.secondary-download{background:#252d39;border-color:#344052}.results-toolbar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:8px 0}.results-toolbar span{font-size:11px;color:var(--muted)}.results-toolbar button{padding:7px 10px;font-size:11px}.notice{font-size:11px;line-height:1.5;color:#d7cda9;background:#211d11;border:1px solid #4a4024;padding:10px;border-radius:11px;margin-top:10px}.history{max-height:240px;overflow:auto}.history div{padding:8px 0;border-bottom:1px solid #242c38}.hidden{display:none}.voicefilters{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:8px}.filterbtn{background:#1a202c;border:1px solid #2a3342;color:#dfe5ef;padding:9px 8px;font-size:12px}.filterbtn.active{background:#241c4a;border-color:#7657ff;color:#fff}.voice-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}.fav{background:transparent!important;padding:2px 5px!important;font-size:17px!important;color:#ffd85a!important}.voice-count{font-size:11px;color:var(--muted);margin-top:7px}.voicegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;max-height:520px;overflow:auto;margin-top:9px}.voice{border:1px solid #293240;border-radius:11px;background:#0d1118;padding:10px;cursor:pointer}.voice:hover{border-color:#4a5670}.voice.selected{border-color:#7657ff;background:#18142d}.voice b{display:block;font-size:13px}.voice small{display:block;color:var(--muted);margin-top:4px;line-height:1.35}.langchips{display:flex;gap:4px;flex-wrap:wrap;margin-top:7px}.chip{font-size:10px;padding:3px 6px;border-radius:999px;background:#202735;color:#cbd3e1}.preview{margin-top:7px;width:100%;height:28px}.voice-actions{display:flex;gap:5px;margin-top:7px}.voice-actions button{padding:6px 8px;font-size:11px;flex:1}.library-tabs{display:flex;gap:7px;margin-bottom:8px}.library-tab{background:#1a202c;border:1px solid #2a3342}.library-tab.active{background:#241c4a;border-color:#7657ff}.library-panel{display:none}.library-panel.active{display:block}.libfilters{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:7px;margin-top:8px}.libpager{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:10px}.libpager button{min-width:110px}.empty{padding:18px;text-align:center;border:1px dashed #334052;border-radius:12px;color:var(--muted);margin-top:9px}.selectedbox{background:#0d1118;border:1px solid #2a3342;border-radius:12px;padding:10px;margin-top:10px}.selectedbox b{color:#fff}.note2{font-size:11px;color:#b7c0cf;line-height:1.5;margin-top:8px}.mini{font-size:10px;color:var(--muted)}.loading{animation:pulse 1s infinite}@keyframes pulse{50%{opacity:.5}}@media(max-width:900px){.layout{grid-template-columns:1fr}.voicegrid{grid-template-columns:1fr}}@media(max-width:600px){.voicefilters{grid-template-columns:1fr 1fr}.libfilters{grid-template-columns:1fr 1fr}.hero h1{font-size:25px}.row{flex-direction:column}.row>*{width:100%}textarea{min-height:250px}}
+
+/* ===== V6 REDESIGN ===== */
+body{background:radial-gradient(circle at 10% 0,#1b1730 0,#080a0e 42%)}
+.wrap{max-width:1500px;padding:18px 18px 36px}
+.hero{padding:4px 2px 16px}.hero .badge{display:none}.hero h1{font-size:28px;margin:0 0 4px}.hero .sub{font-size:13px}
+.appgrid{display:grid;grid-template-columns:270px 380px minmax(0,1fr);gap:12px;align-items:start}
+.card{padding:13px;border-radius:16px;margin-bottom:12px}
+.card h3{font-size:15px;margin-bottom:9px}
+textarea{min-height:180px;max-height:300px;font-size:14px;line-height:1.55}
+.compact-controls .row{gap:6px}.compact-controls label{margin:7px 0 4px}.compact-controls input,.compact-controls select{padding:8px 9px;font-size:12px}
+.compact-controls .row>div{min-width:0}
+.composer-actions{display:flex;gap:6px;margin-top:8px}.composer-actions button{flex:1;padding:9px 8px;font-size:12px}
+.voice-panel{position:sticky;top:10px}.voice-panel .voicegrid{grid-template-columns:1fr;max-height:calc(100vh - 330px);min-height:180px;overflow:auto}
+.voicegrid{gap:6px;margin-top:7px}
+.voice{padding:8px;border-radius:10px;cursor:default}.voice:hover{border-color:#4a5670}.voice.selected{border-color:#7657ff;background:#18142d}
+.voice-top{align-items:center}.voice-top>div{min-width:0}.voice b{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.voice small,.voice .langchips,.voice .voice-description{display:none}
+.preview{margin-top:5px;height:30px}.voice-actions{margin-top:5px}.voice-actions button{padding:6px 8px;font-size:11px}.voice-actions .select-btn{background:#252d39}.voice-actions .green{background:#146b4a}
+.fav{font-size:16px!important;flex:0 0 auto}
+.voicefilters{grid-template-columns:repeat(4,1fr);gap:5px}.filterbtn{padding:7px 5px;font-size:11px}
+.voice-tools{display:grid;grid-template-columns:1fr 1fr;gap:6px}.voice-tools input,.voice-tools select{padding:8px 9px;font-size:12px}
+.voice-count{font-size:10px}
+.library-section{margin-top:0}.library-section .voicegrid{grid-template-columns:repeat(3,minmax(0,1fr));max-height:420px}.library-section .voice{cursor:default}
+.library-section .voice-top small{display:none}.library-section .voice-actions{display:flex}.library-section .voice-actions .green{flex:1}
+.library-section .voice-actions:before{content:''}
+.library-section .libfilters{grid-template-columns:1fr 1fr 1fr 1.4fr;gap:6px}.library-section .libfilters input,.library-section .libfilters select{padding:8px 9px;font-size:12px}
+.library-section .actions{margin-top:7px}.library-section .actions button{padding:8px;font-size:12px}
+.sidebar .notice{font-size:10px;padding:8px}.sidebar .profile{padding:8px}.sidebar input{padding:8px;font-size:12px}.sidebar .actions button{padding:8px;font-size:12px}
+.account-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}.account-head h3{margin:0}.account-count{font-size:10px;color:var(--muted);white-space:nowrap}.profile-search{margin-bottom:8px!important}.profiles{max-height:0;overflow-y:auto;overflow-x:hidden;padding-right:5px;scrollbar-width:thin;scrollbar-color:#7657ff #151a24;transition:max-height .18s ease}.profiles::-webkit-scrollbar{width:7px}.profiles::-webkit-scrollbar-track{background:#151a24;border-radius:10px}.profiles::-webkit-scrollbar-thumb{background:#7657ff;border-radius:10px}.profiles::-webkit-scrollbar-thumb:hover{background:#8d73ff}.profile{min-height:52px;transition:.15s}.profile-main{min-width:0;display:flex;align-items:center;gap:8px}.profile-dot{width:9px;height:9px;border-radius:50%;background:#586275;flex:none}.profile.active .profile-dot{background:#8f78ff;box-shadow:0 0 0 4px rgba(118,87,255,.12)}.profile-text{min-width:0}.profile-text b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px}.profile-meta{display:flex;gap:6px;align-items:center;margin-top:3px}.profile-pill{font-size:9px;padding:2px 5px;border-radius:999px;background:#202735;color:#aeb8c8}.profile-actions{display:flex;gap:4px;align-items:center;flex:none}.profile-icon-btn{background:#202735!important;padding:5px 7px!important;font-size:10px!important;min-width:auto!important}.profile.active .profile-icon-btn{background:#2b2355!important}.profile-form{margin-top:9px;padding:10px;border:1px solid #2a3342;border-radius:12px;background:#0b0f16}.profile-form .form-title{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:750;margin-bottom:5px}.profile-form label{margin:7px 0 4px}.profile-form .row{gap:6px}.profile-form .row button{padding:8px;font-size:11px}.profile-empty{padding:16px 8px;text-align:center;border:1px dashed #334052;border-radius:10px;color:var(--muted);font-size:11px}.profile-scroll-note{font-size:9px;color:#727d8f;margin-top:5px;text-align:center}.profile-key-wrap{position:relative}.profile-key-wrap input{padding-right:54px}.key-toggle{position:absolute;right:5px;top:4px;background:#202735!important;padding:6px 7px!important;font-size:10px!important}.profile-selected-info{margin-top:8px;padding:8px 9px;border-radius:10px;background:#0b0f16;border:1px solid #252e3b;font-size:10px;color:#aeb8c8}.profile-selected-info strong{color:#fff}.profile-add-btn{width:100%;margin-top:8px}.profile-list-title{display:flex;justify-content:space-between;align-items:center;color:#aeb8c8;font-size:10px;margin:6px 0}
+
+.selectedbox{padding:8px;font-size:12px}.selectedbox .tiny{font-size:10px}
+.history{max-height:180px;font-size:11px}
+.results-card{margin-top:0}
+.footer{margin-top:18px;padding:18px 8px 4px;border-top:1px solid #242c38;text-align:center;color:#8791a3;font-size:11px;line-height:1.7}.footer strong{color:#e9edf5}.footer a{color:#b8aaff;text-decoration:none}.footer .contact{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin:5px 0}
+.section-title{display:flex;justify-content:space-between;align-items:center;gap:8px}.section-title .mini{font-size:10px}
+@media(max-width:1180px){.appgrid{grid-template-columns:240px 350px minmax(0,1fr)}.library-section .voicegrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:900px){.appgrid{grid-template-columns:1fr}.voice-panel{position:static}.voice-panel .voicegrid{max-height:520px}.library-section .voicegrid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.wrap{padding:12px 10px 28px}.hero h1{font-size:23px}.appgrid{grid-template-columns:1fr}.voicefilters{grid-template-columns:1fr 1fr}.voice-tools,.library-section .libfilters{grid-template-columns:1fr 1fr}.library-section .voicegrid{grid-template-columns:1fr}.row{flex-direction:column}.row>*{width:100%}textarea{min-height:160px}.footer .contact{flex-direction:column;gap:3px}}
+
+/* ===== V9.1 BALANCED LAYOUT ===== */
+.appgrid{align-items:start}
+.voice-panel{align-self:stretch;height:100%;min-height:0;display:flex;flex-direction:column;position:static}
+.voice-panel .voicegrid{flex:1;min-height:520px;max-height:none;overflow:auto;align-content:start;scrollbar-width:thin;scrollbar-color:#7657ff #151a24}
+.voice-panel .voicegrid::-webkit-scrollbar{width:8px}
+.voice-panel .voicegrid::-webkit-scrollbar-track{background:#151a24;border-radius:10px}
+.voice-panel .voicegrid::-webkit-scrollbar-thumb{background:#7657ff;border-radius:10px}
+.voice-panel .voicegrid::-webkit-scrollbar-thumb:hover{background:#8d73ff}
+.voice-panel .empty{min-height:220px;display:flex;align-items:center;justify-content:center;padding:24px}
+.library-section{margin-top:12px}
+.profiles{height:54px!important;max-height:54px!important;overflow-y:auto!important;overflow-x:hidden;padding-right:6px}
+.profile-scroll-note{margin-top:6px}
+@media(max-width:1180px){.voice-panel .voicegrid{min-height:500px}}
+@media(max-width:900px){.voice-panel{height:auto;min-height:0;display:block;position:static}.voice-panel .voicegrid{min-height:180px;max-height:520px;flex:none}.voice-panel .empty{min-height:160px}.profiles{height:54px!important;max-height:54px!important}}
+
+
+/* ===== V10 FINAL POLISH ===== */
+.appgrid{align-items:stretch}
+.sidebar,.compact-controls,.voice-panel{min-height:0}
+.compact-controls{display:flex;flex-direction:column}
+.voice-panel{display:flex;flex-direction:column;height:100%;min-height:0}
+.voice-panel #voices{flex:1 1 auto;min-height:260px;max-height:none;overflow:auto;scrollbar-width:thin;scrollbar-color:#7657ff #151a24}
+.voice-panel #voices::-webkit-scrollbar{width:8px}.voice-panel #voices::-webkit-scrollbar-track{background:#151a24;border-radius:10px}.voice-panel #voices::-webkit-scrollbar-thumb{background:#7657ff;border-radius:10px}
+.profiles{height:54px!important;max-height:54px!important;overflow-y:auto!important}
+.voice-access{display:inline-flex;align-items:center;gap:4px;font-size:9px!important;padding:3px 6px!important;border-radius:999px;margin-top:4px;background:#202735;color:#aeb8c8}
+.voice-access.good{background:rgba(50,213,131,.12);color:#66e0a0}.voice-access.blocked{background:rgba(255,93,115,.12);color:#ff8ea0}.voice .source-row{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}.source-badge{font-size:9px;padding:3px 6px;border-radius:999px;background:#202735;color:#cbd3e1}.source-badge.library{background:#28203f;color:#d4c7ff}.source-badge.my{background:#173126;color:#9de1bb}
+.voice-actions .disabled-btn{background:#343b48!important;color:#8e98a9!important;cursor:not-allowed!important;opacity:.8!important}.voice-block-note{font-size:10px;color:#ff9aa8;line-height:1.35;margin-top:6px;padding:7px 8px;border-radius:8px;background:#23151a;border:1px solid #4a242f}.voice-block-note a{color:#9dc7ff}
+.library-notice{font-size:11px;line-height:1.45;color:#c7d1df;background:#111b28;border:1px solid #263b54;padding:9px 10px;border-radius:11px;margin-top:8px}.result{padding:12px}.result-title{display:flex;justify-content:space-between;gap:8px;align-items:center}.result-meta{font-size:10px;color:var(--muted)}
+@media(min-width:901px){.appgrid{grid-template-columns:270px 380px minmax(0,1fr)}.voice-panel{min-height:560px}.compact-controls{min-height:560px}.voice-panel #voices{min-height:320px}}
+
+
+/* ===== V10.1 VOICE LIST: SHOW 4, SCROLL FROM 5TH ===== */
+@media(min-width:901px){
+  .voice-panel #voices{
+    height:492px !important;
+    min-height:492px !important;
+    max-height:492px !important;
+    overflow-y:scroll !important;
+    overflow-x:hidden !important;
+    align-content:start;
+  }
+  .voice-panel #voices .voice{
+    min-height:114px;
+  }
+}
+@media(max-width:900px){
+  .voice-panel #voices{
+    height:492px !important;
+    min-height:492px !important;
+    max-height:492px !important;
+    overflow-y:scroll !important;
+    overflow-x:hidden !important;
+  }
+}
+
+
+/* ===== V10.2 WIDE CONTENT / COMPACT HEIGHT ===== */
+@media(min-width:901px){
+  .appgrid{
+    grid-template-columns:270px minmax(440px,480px) minmax(0,1fr);
+    align-items:start;
+    gap:14px;
+  }
+  .compact-controls{
+    align-self:start;
+    height:max-content;
+    min-height:0;
+  }
+  .compact-controls textarea{
+    min-height:240px;
+    max-height:420px;
+  }
+  .voice-panel{
+    align-self:stretch;
+  }
+}
+@media(min-width:901px) and (max-width:1180px){
+  .appgrid{grid-template-columns:240px minmax(400px,1fr) minmax(0,1fr);}
+}
+@media(max-width:900px){
+  .compact-controls{height:auto;min-height:0;}
+  .compact-controls textarea{min-height:220px;}
+}
+
+
+/* ===== V10.3 CONTENT + VOICE BALANCED ===== */
+@media(min-width:901px){
+  .appgrid{
+    grid-template-columns:270px minmax(470px,520px) minmax(0,1fr);
+    align-items:stretch;
+    gap:14px;
+  }
+  .compact-controls{
+    align-self:stretch;
+    min-height:0;
+    display:flex;
+    flex-direction:column;
+  }
+  /* Ô nhập nội dung được mở rộng để cân với khu vực giọng đọc */
+  .compact-controls #text{
+    height:600px;
+    min-height:600px;
+    max-height:none;
+    resize:vertical;
+  }
+  .voice-panel{
+    align-self:stretch;
+    min-height:0;
+    display:flex;
+    flex-direction:column;
+  }
+  /* Hiện khoảng 6 giọng đọc trước khi cuộn */
+  .voice-panel #voices{
+    height:600px !important;
+    min-height:600px !important;
+    max-height:600px !important;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    align-content:start;
+  }
+  .voice-panel #voices .voice{
+    min-height:92px;
+  }
+}
+@media(min-width:901px) and (max-width:1180px){
+  .appgrid{grid-template-columns:240px minmax(430px,1fr) minmax(0,1fr)}
+  .compact-controls #text{height:600px;min-height:600px}
+  .voice-panel #voices{height:600px !important;min-height:600px !important;max-height:600px !important}
+}
+@media(max-width:900px){
+  .compact-controls #text{height:340px;min-height:340px;max-height:none}
+  .voice-panel #voices{
+    height:600px !important;
+    min-height:600px !important;
+    max-height:600px !important;
+    overflow-y:auto !important;
+  }
+  .voice-panel #voices .voice{min-height:92px}
+}
+
+
+/* ===== V11 FINAL • 3 PROFILES SCROLL + DASHBOARD + MOUSE EFFECTS ===== */
+@media(min-width:901px){
+  .appgrid{
+    grid-template-columns:270px minmax(470px,520px) minmax(0,1fr);
+    align-items:stretch;
+    gap:14px;
+  }
+  .sidebar,.compact-controls,.voice-panel{height:100%;}
+  .profiles{
+    height:auto !important;
+    max-height:185px !important;
+    min-height:0;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    scroll-behavior:smooth;
+  }
+  .profile{min-height:54px;}
+  .compact-controls #text{height:600px;min-height:600px;max-height:none;}
+  .voice-panel{display:flex;flex-direction:column;min-height:0;}
+  .voice-panel #voices{
+    height:548px !important;
+    min-height:548px !important;
+    max-height:548px !important;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    align-content:start;
+    grid-template-columns:1fr;
+    grid-auto-rows:86px;
+  }
+  .voice-panel #voices .voice{
+    height:86px;
+    min-height:86px;
+    padding:8px;
+  }
+}
+
+/* 3-profile viewport: 4th item starts scroll */
+.profiles{scrollbar-width:thin;scrollbar-color:#7657ff #151a24;overscroll-behavior:contain;}
+.profile{transition:transform .16s ease,border-color .18s ease,background .18s ease,box-shadow .18s ease;}
+.profile:hover{transform:translateX(2px);border-color:#4c5a73;box-shadow:0 8px 24px rgba(0,0,0,.16);}
+.profile.active:hover{border-color:#8b73ff;box-shadow:0 10px 28px rgba(118,87,255,.16);}
+
+/* Compact header actions */
+.header-action{padding:7px 10px!important;font-size:11px!important;min-width:auto!important;white-space:nowrap;}
+.history-card .section-title{margin-bottom:8px;}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px;}
+.stat-box{background:#0d1118;border:1px solid #252e3b;border-radius:10px;padding:8px 9px;}
+.stat-box b{display:block;font-size:15px;color:#fff;}
+.stat-box span{font-size:10px;color:var(--muted);}
+
+/* Selected voice sidebar card */
+.selected-voice-card .section-title{margin-bottom:8px;}
+.selected-voice-card .selectedbox{margin-top:0;}
+
+/* Mouse / hover effects */
+button,.profile,.voice,.card,.selectedbox,.selected-voice-card,.stat-box,.result,.library-tab,.filterbtn,input,select,textarea{transition:transform .16s ease,box-shadow .18s ease,border-color .18s ease,background .18s ease;}
+button:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.22);}
+button:active:not(:disabled){transform:translateY(0);box-shadow:none;}
+.card:hover{box-shadow:0 18px 46px rgba(0,0,0,.24);}
+.voice:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(0,0,0,.18);}
+input:hover,select:hover,textarea:hover{border-color:#3d4a61;}
+input:focus,select:focus,textarea:focus{border-color:#7657ff;box-shadow:0 0 0 3px rgba(118,87,255,.13);}
+.filterbtn:hover,.library-tab:hover{transform:translateY(-1px);box-shadow:0 7px 18px rgba(0,0,0,.2);}
+.cursor-glow{position:fixed;left:0;top:0;width:150px;height:150px;border-radius:50%;pointer-events:none;z-index:9999;opacity:.16;background:radial-gradient(circle,rgba(118,87,255,.95) 0,rgba(118,87,255,.32) 30%,rgba(118,87,255,0) 70%);filter:blur(7px);transform:translate(-50%,-50%);mix-blend-mode:screen;will-change:transform;}
+@media (pointer:coarse){.cursor-glow{display:none;}button:hover:not(:disabled),.profile:hover,.voice:hover,.card:hover,.filterbtn:hover,.library-tab:hover{transform:none;box-shadow:none;}}
+
+@media(max-width:900px){
+  .profiles{max-height:185px !important;overflow-y:auto !important;}
+  .voice-panel #voices{height:548px !important;min-height:548px !important;max-height:548px !important;grid-template-columns:1fr;overflow-y:auto!important;}
+  .voice-panel #voices .voice{height:86px;min-height:86px;}
+  
+}
+@media(max-width:600px){
+  .stats-grid,
+}
+
+
+/* ===== V11.3 • VOICE LIST SHOW 8, SCROLL FROM 9TH ===== */
+@media(min-width:901px){
+  .voice-panel #voices{
+    height:730px !important;
+    min-height:730px !important;
+    max-height:730px !important;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    grid-template-columns:1fr;
+    grid-auto-rows:86px;
+    align-content:start;
+    gap:6px;
+    scrollbar-width:thin;
+    scrollbar-color:#7657ff #151a24;
+  }
+  .voice-panel #voices .voice{
+    height:86px !important;
+    min-height:86px !important;
+    max-height:86px !important;
+    overflow:hidden;
+  }
+}
+@media(max-width:900px){
+  .voice-panel #voices{
+    height:730px !important;
+    min-height:730px !important;
+    max-height:730px !important;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    grid-template-columns:1fr;
+    grid-auto-rows:86px;
+    align-content:start;
+    gap:6px;
+  }
+  .voice-panel #voices .voice{
+    height:86px !important;
+    min-height:86px !important;
+    max-height:86px !important;
+    overflow:hidden;
+  }
+}
+
+/* ===== V12 • VIETNAMESE FREE VOICE DESIGN ===== */
+.vi-free-btn{background:linear-gradient(135deg,#16a36a,#0f754f)!important;color:#fff!important;border:1px solid #2ac989!important}
+.vi-free-btn:hover{box-shadow:0 8px 22px rgba(22,163,106,.28)!important}
+.vi-modal-backdrop{position:fixed;inset:0;background:rgba(3,5,9,.72);backdrop-filter:blur(8px);z-index:10000;display:flex;align-items:center;justify-content:center;padding:18px}
+.vi-modal-backdrop.hidden{display:none!important}
+.vi-modal{width:min(760px,100%);max-height:min(92vh,900px);overflow:auto;background:#111722;border:1px solid #344052;border-radius:18px;box-shadow:0 28px 90px rgba(0,0,0,.5);padding:16px}
+.vi-modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.vi-modal-head h3{margin:0}.vi-modal-close{background:#252d39!important;padding:8px 11px!important}
+.vi-info{margin:10px 0;padding:10px 11px;border-radius:11px;background:#0d1720;border:1px solid #214834;color:#bcead1;font-size:11px;line-height:1.55}
+.vi-presets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:8px}.vi-preset{background:#1a202c!important;border:1px solid #2a3342!important;text-align:left}.vi-preset.active{background:#173126!important;border-color:#32d583!important}
+.vi-preview-grid{display:grid;gap:8px;margin-top:10px}.vi-preview{background:#0b0f16;border:1px solid #2a3342;border-radius:12px;padding:10px}.vi-preview-head{display:flex;justify-content:space-between;align-items:center;gap:8px}.vi-preview audio{width:100%;margin-top:8px}.vi-preview .actions{margin-top:8px}
+.vi-slot{font-size:10px;color:#98a2b3}.vi-status{margin-top:8px}
+@media(max-width:600px){.vi-presets{grid-template-columns:1fr}}
+
+
+.vi-guide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
+.vi-guide-step{background:#0d131c;border:1px solid #2d3848;border-radius:12px;padding:11px 12px;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.vi-guide-step:hover{transform:translateY(-2px);border-color:#6f52ff;box-shadow:0 10px 24px rgba(111,82,255,.14)}
+.vi-guide-step b{display:block;margin-bottom:4px}
+.vi-guide-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.vi-guide-actions button:first-child{background:linear-gradient(135deg,#6f52ff,#7b4dff)!important;color:#fff!important}
+.vi-copy-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.vi-copy-row button{font-size:12px!important}
+.vi-note{margin-top:10px;padding:10px 12px;border-radius:11px;background:#161c28;border:1px solid #303a4b;color:#b7c2d3;font-size:12px;line-height:1.55}
+@media(max-width:600px){.vi-guide-grid,.vi-guide-actions,.vi-copy-row{grid-template-columns:1fr}}
+
+</style>
+</head>
+
+
+<div class="wrap">
+<header class="hero"><h1>🎙️ DUNG NGUYEN ELEVENLABS TTS STUDIO V12</h1><div class="sub">Quản lý 10+ tài khoản • Chuyển profile thủ công • 🇻🇳 Tiếng Việt • 🇺🇸 English • 🌍 Ngôn ngữ khác • Voice Library</div></header>
+<div class="appgrid">
+<aside class="sidebar">
+<section class="card profile-manager">
+<div class="account-head"><h3>👤 Hồ sơ ElevenLabs</h3><span id="profileCount" class="account-count">0 tài khoản</span></div>
+<input id="profileSearch" class="profile-search" placeholder="🔎 Tìm tài khoản..." oninput="renderProfiles()">
+<div class="profile-list-title"><span>Danh sách tài khoản</span><span class="mini">10+ tài khoản</span></div>
+<div id="profiles" class="profiles"></div>
+<div class="profile-scroll-note">Cuộn danh sách để xem thêm tài khoản</div>
+<button class="profile-add-btn" onclick="openProfileForm()">＋ Thêm tài khoản</button>
+<div id="profileForm" class="profile-form hidden">
+  <div class="form-title"><span id="profileFormTitle">➕ Thêm tài khoản mới</span><button class="profile-icon-btn" onclick="closeProfileForm()">✕</button></div>
+  <label>Tên hồ sơ</label><input id="pname" placeholder="Account 1">
+  <label>API Key</label><div class="profile-key-wrap"><input id="pkey" type="password" placeholder="xi-..."><button class="key-toggle" onclick="toggleProfileKey()">👁</button></div>
+  <label class="tiny"><input id="remember" type="checkbox" style="width:auto;margin-right:5px"> Lưu key trong trình duyệt</label>
+  <div class="row" style="margin-top:7px"><button onclick="saveProfileForm()">💾 Lưu</button><button class="secondary" onclick="closeProfileForm()">Hủy</button></div>
+</div>
+<div id="profileSelectedInfo" class="profile-selected-info">Chọn một tài khoản để xem thông tin.</div>
+<div class="notice">⚠️ API key là dữ liệu bí mật. App chỉ lưu local trên trình duyệt nếu anh bật “Lưu key”. Không đưa key lên GitHub. <a href="https://elevenlabs.io/docs/overview/administration/workspaces/api-keys" target="_blank" rel="noopener">Xem hướng dẫn bảo mật API key</a></div>
+</section>
+<section class="card"><h3>📊 Tài khoản</h3><div id="usage" class="status">Chọn hồ sơ.</div><div class="usagebar"><div id="usagebar"></div></div><div class="actions"><button class="secondary" onclick="testKey()">🔎 Kiểm tra</button><button class="secondary" onclick="syncVoices()">🔄 Voices</button><button class="danger" onclick="removeProfile()">Xóa</button></div></section>
+<section class="card"><h3>📊 Thống kê</h3><div class="stats-grid"><div class="stat-box"><b id="statProfiles">0</b><span>Tài khoản</span></div><div class="stat-box"><b id="statVoices">0</b><span>My Voices</span></div><div class="stat-box"><b id="statToday">0</b><span>Lần tạo hôm nay</span></div><div class="stat-box"><b id="statAudio">0</b><span>Audio đã tạo</span></div></div></section>
+<section class="card selected-voice-card">
+  <div class="section-title">
+    <h3>⭐ Voice đang chọn</h3>
+    <button class="header-action secondary" type="button" onclick="copySelectedVoiceId()" title="Sao chép Voice ID">📋</button>
+  </div>
+  <div id="selectedVoiceSummary" class="selectedbox">Chưa chọn voice.</div>
+  <div id="selectedVoiceMeta" class="tiny" style="margin-top:6px">Chọn một giọng đọc ở cột bên phải.</div>
+</section>
+</aside>
+<section class="card compact-controls">
+<div class="section-title"><h3>📝 Nội dung đọc</h3><button class="header-action secondary" type="button" onclick="clearText()">🧹 Xóa nội dung</button></div>
+<textarea id="text" placeholder="Nhập nội dung muốn chuyển thành giọng nói..."></textarea>
+<div class="counter"><span id="count">0 ký tự</span><span id="estimate">0 đoạn</span></div>
+<div class="row" style="margin-top:7px"><div><label>Model</label><select id="model"><option value="eleven_flash_v2_5">Flash v2.5</option><option value="eleven_multilingual_v2">Multilingual v2</option><option value="eleven_v3">Eleven v3</option></select></div><div><label>Output</label><select id="format"><option value="mp3_44100_128">MP3 128kbps</option><option value="mp3_44100_192">MP3 192kbps</option></select></div></div>
+<div class="row"><div><label>Speed</label><input id="speed" type="number" min=".7" max="1.2" step=".05" value="1"></div><div><label>Stability</label><input id="stability" type="number" min="0" max="1" step=".05" value=".5"></div></div>
+<div class="row"><div><label>Similarity</label><input id="similarity" type="number" min="0" max="1" step=".05" value=".75"></div><div><label>Style</label><input id="style" type="number" min="0" max="1" step=".05" value="0"></div></div>
+<div class="composer-actions"><button id="generate" onclick="generate()">🚀 Tạo giọng đọc</button><button class="secondary" onclick="clearText()">Xóa</button></div><div id="status" class="status" style="margin-top:8px">Sẵn sàng.</div><div id="resultsToolbar" class="results-toolbar hidden"><span id="resultsSummary"></span><button class="secondary" id="downloadAllBtn" onclick="downloadAllResults()">⬇️ Tải tất cả</button></div><div id="results"></div>
+<section class="card history-card" style="margin:10px -1px 0;background:#0d1118"><div class="section-title"><h3>🕘 Lịch sử</h3><button class="header-action secondary" type="button" onclick="clearHistory()">🗑️ Xóa lịch sử</button></div><div id="history" class="history status">Chưa có.</div></section>
+</section>
+<section class="card voice-panel">
+<div class="section-title"><h3>🎙️ Giọng đọc</h3><span id="voiceStatus" class="mini">Bấm 🔄 Voices</span></div>
+<div class="voicefilters"><button class="filterbtn active" id="fgAll" onclick="setVoiceGroup('all')">🌐 Tất cả</button><button class="filterbtn" id="fgVi" onclick="setVoiceGroup('vi')">🇻🇳 Việt</button><button class="filterbtn" id="fgEn" onclick="setVoiceGroup('en')">🇺🇸 English</button><button class="filterbtn" id="fgOther" onclick="setVoiceGroup('other')">🌍 Khác</button></div>
+<div class="voice-tools" style="margin-top:6px"><select id="voiceLang" onchange="renderMyVoices()"><option value="all">Tất cả ngôn ngữ</option></select><select id="voiceGender" onchange="renderMyVoices()"><option value="all">Tất cả giới tính</option><option value="female">👩 Nữ</option><option value="male">👨 Nam</option><option value="neutral">⚪ Khác</option></select></div>
+<input id="voiceSearch" style="margin-top:6px" placeholder="🔎 Tìm tên giọng..." oninput="renderMyVoices()">
+<div class="voice-tools" style="margin-top:6px"><select id="voiceSort" onchange="renderMyVoices()"><option value="name">Tên A → Z</option><option value="new">Mới nhất</option></select><button class="secondary" onclick="syncVoices()">🔄 Tải lại voices</button></div><button class="vi-free-btn" type="button" style="width:100%;margin-top:6px" onclick="openVietnameseFreeVoice()">🇻🇳 Tạo giọng Việt Free trên ElevenLabs</button><div class="voice-tools" style="margin-top:6px"><button class="secondary" onclick="showHiddenVoices()">👁️ Voice đã ẩn</button><button class="secondary" onclick="clearHiddenVoices()">↩️ Hiện lại tất cả</button></div><div class="tiny" style="margin-top:6px">💡 “Ẩn khỏi app” chỉ ẩn voice trong app này. “Xóa khỏi ElevenLabs” là thao tác vĩnh viễn. V12.3 kiểm tra quyền API TTS trước khi tạo audio; Voice Design Free được thực hiện trên website ElevenLabs.</div>
+<div id="voices" class="voicegrid"></div>
+</section>
+</div>
+
+
+<div id="viVoiceModal" class="vi-modal-backdrop hidden" onclick="if(event.target===this)closeVietnameseFreeVoice()" aria-hidden="true">
+  <div class="vi-modal" role="dialog" aria-modal="true" aria-labelledby="viVoiceTitle">
+    <div class="vi-modal-head">
+      <div><h3 id="viVoiceTitle">🇻🇳 Tạo giọng tiếng Việt Free</h3><div class="mini">Voice Design trên website ElevenLabs • sau khi lưu, tải lại My Voices trong app</div></div>
+      <button class="vi-modal-close" type="button" onclick="closeVietnameseFreeVoice()" aria-label="Đóng">✕</button>
+    </div>
+    <div class="vi-info">
+      <b>✅ Phù hợp với tài khoản Free của anh:</b> ElevenLabs cho phép người dùng tạo synthetic voices bằng Voice Design trên website. Với profile Free của anh, Voice Design API đang trả HTTP 403 “Creating a voice through the API is only available on a paid plan”, vì vậy V12.3 <b>không gọi Voice Design API nữa</b>. Quy trình mới: mở Voice Design trên website → lưu voice vào My Voices → quay lại app → tải lại voices.
+    </div>
+    <label>Tên voice gợi ý</label>
+    <input id="viVoiceName" placeholder="Ví dụ: Dung Nguyen - Nam kể chuyện ấm áp">
+    <label>Phong cách giọng</label>
+    <div class="vi-presets">
+      <button class="vi-preset active" data-desc="Native Vietnamese male narrator from Vietnam, middle-aged, warm, calm, deep, natural northern Vietnamese accent, clear articulation, suitable for emotional storytelling and documentary narration." onclick="chooseViPreset(this)">👨 Nam • ấm, trầm, kể chuyện</button>
+      <button class="vi-preset" data-desc="Native Vietnamese female narrator from Vietnam, young adult, warm, gentle, clear, natural northern Vietnamese accent, emotionally expressive but controlled, suitable for stories and social content." onclick="chooseViPreset(this)">👩 Nữ • dịu, rõ, cảm xúc</button>
+      <button class="vi-preset" data-desc="Native Vietnamese male narrator from Vietnam, mature, reassuring, steady, natural southern Vietnamese accent, conversational and friendly, suitable for YouTube narration and lifestyle content." onclick="chooseViPreset(this)">👨 Nam • miền Nam, thân thiện</button>
+      <button class="vi-preset" data-desc="Native Vietnamese female narrator from Vietnam, mature, confident, warm, natural southern Vietnamese accent, smooth pacing and crisp diction, suitable for educational and motivational narration." onclick="chooseViPreset(this)">👩 Nữ • miền Nam, chắc giọng</button>
+    </div>
+    <label>Mô tả Voice Design</label>
+    <textarea id="viVoiceDesc" style="min-height:110px;max-height:220px">Native Vietnamese male narrator from Vietnam, middle-aged, warm, calm, deep, natural northern Vietnamese accent, clear articulation, suitable for emotional storytelling and documentary narration.</textarea>
+    <label>Đoạn preview tiếng Việt <span class="mini">(100–1000 ký tự)</span></label>
+    <textarea id="viVoiceText" style="min-height:130px;max-height:260px">Có những ngày chúng ta chỉ muốn ngồi thật yên, nhìn thời gian trôi qua và lắng nghe chính mình. Mỗi câu chuyện đều có một khoảng lặng, và đôi khi chính khoảng lặng ấy lại giúp ta hiểu điều mình thật sự muốn nói.</textarea>
+    <div class="vi-guide-actions">
+      <button type="button" onclick="openVietnameseVoiceDesign()">🌐 Mở Voice Design trên ElevenLabs</button>
+      <button class="secondary" type="button" onclick="reloadVietnameseVoices()">🔄 Tải lại My Voices</button>
+    </div>
+    <div class="vi-copy-row">
+      <button class="secondary" type="button" onclick="copyViPrompt()">📋 Copy mô tả Voice</button>
+      <button class="secondary" type="button" onclick="copyViPreview()">📋 Copy đoạn preview</button>
+    </div>
+    <div class="vi-guide-grid">
+      <div class="vi-guide-step"><b>1️⃣ Mở Voice Design</b><span class="tiny">Trang chính thức của ElevenLabs sẽ mở ở tab mới.</span></div>
+      <div class="vi-guide-step"><b>2️⃣ Dán mô tả Voice</b><span class="tiny">Copy phần mô tả bên trên và dán vào prompt trên website.</span></div>
+      <div class="vi-guide-step"><b>3️⃣ Dán đoạn preview</b><span class="tiny">Dùng đoạn tiếng Việt bên trên để nghe 3 mẫu voice.</span></div>
+      <div class="vi-guide-step"><b>4️⃣ Save → My Voices</b><span class="tiny">Chọn mẫu phù hợp, lưu voice rồi quay lại app.</span></div>
+    </div>
+    <div class="vi-note"><b>💡 Sau khi lưu voice:</b> đóng hộp thoại này và bấm <b>🔄 Tải lại voices</b>. V12.3 sẽ tải lại danh sách My Voices và bật bộ lọc 🇻🇳 Việt.</div>
+    <div id="viStatus" class="status vi-status">Sẵn sàng. V12.3 không gọi Voice Design API trên profile Free này.</div>
+    <div class="actions" style="margin-top:10px"><button class="secondary" type="button" onclick="closeVietnameseFreeVoice()">Đóng</button></div>
+  </div>
+</div>
+
+<section class="card library-section"><div class="section-title"><h3>🌍 Voice Library — tìm thêm giọng</h3><span class="mini">Nghe thử • Add vào My Voices</span></div>
+<div class="library-tabs"><button id="tabVi" class="library-tab active" onclick="setLibraryLanguage('vi')">🇻🇳 Tiếng Việt</button><button id="tabEn" class="library-tab" onclick="setLibraryLanguage('en')">🇺🇸 English</button><button id="tabOther" class="library-tab" onclick="setLibraryLanguage('other')">🌍 Nước khác</button></div>
+<div class="libfilters"><div><label>Ngôn ngữ</label><select id="libLang" onchange="libraryPage=0;loadLibrary()"></select></div><div><label>Giới tính</label><select id="libGender" onchange="libraryPage=0;loadLibrary()"><option value="">Tất cả</option><option value="female">👩 Nữ</option><option value="male">👨 Nam</option><option value="neutral">⚪ Neutral</option></select></div><div><label>Sắp xếp</label><select id="libSort" onchange="libraryPage=0;loadLibrary()"><option value="trending">🔥 Trending</option><option value="created_date">🆕 Mới</option><option value="usage_character_count_1y">📈 Sử dụng</option><option value="cloned_by_count">👥 Nhiều người dùng</option></select></div><div><label>Tìm kiếm</label><input id="libSearch" placeholder="Tên / mô tả / accent" onkeydown="if(event.key==='Enter'){libraryPage=0;loadLibrary()}"></div></div>
+<div class="actions"><button class="secondary" onclick="libraryPage=0;loadLibrary()">🔎 Tìm voice</button><button class="secondary" onclick="clearLibrarySearch()">Xóa lọc</button></div><div id="libraryStatus" class="status" style="margin-top:7px">Voice Library có thể yêu cầu quyền/gói phù hợp của ElevenLabs.</div><div id="libraryVoices" class="voicegrid"></div><div class="libpager"><button class="secondary" id="libPrev" onclick="changeLibraryPage(-1)" disabled>← Trước</button><span id="libPageInfo" class="tiny">Trang 1</span><button class="secondary" id="libNext" onclick="changeLibraryPage(1)" disabled>Sau →</button></div></section>
+
+<footer class="footer"><strong>🎙️ DUNG NGUYEN ELEVENLABS TTS STUDIO V12.3</strong><div class="contact"><span>👤 DUNG NGUYEN</span><span>📞 0901858394</span><span>✉️ dungnguyen68783979@gmail.com</span><span>📘 Facebook: @dungnguyenvl</span></div><div>© 2026 DUNG NGUYEN • Web App bản quyền riêng • All Rights Reserved</div></footer>
+</div>
+<script>
+const KEY='dn_eleven_tts_html_v4';let profiles=JSON.parse(localStorage.getItem(KEY)||'[]');let selectedId=null,voices=[],selectedVoice=null;let libraryPage=0,libraryMode='vi',libraryHasMore=false;let showHidden=false;
+const $=id=>document.getElementById(id);const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+const LANG_NAMES={vi:'Tiếng Việt',en:'English',ja:'日本語',zh:'中文',de:'Deutsch',fr:'Français',es:'Español',ko:'한국어',pt:'Português',it:'Italiano',id:'Bahasa Indonesia',th:'ไทย',ar:'العربية',ru:'Русский',nl:'Nederlands',tr:'Türkçe',pl:'Polski',sv:'Svenska',fi:'Suomi',da:'Dansk',no:'Norsk',cs:'Čeština',el:'Ελληνικά',ro:'Română',uk:'Українська',hu:'Magyar',bg:'Български',hr:'Hrvatski',sk:'Slovenčina',ms:'Bahasa Melayu',ta:'தமிழ்',tl:'Filipino'};
+function save(){localStorage.setItem(KEY,JSON.stringify(profiles))}function selected(){return profiles.find(p=>p.id===selectedId)||null}function baseLang(x){return String(x||'').toLowerCase().split('-')[0]}function langName(x){let c=baseLang(x);return LANG_NAMES[c]||c.toUpperCase()}
+function voiceLanguages(v){const s=new Set();
+  (v.verified_languages||[]).forEach(x=>{if(x&&x.language)s.add(baseLang(x.language));});
+  const l=v.labels||{};
+  if(l.language)String(l.language).split(/[,;|]/).forEach(x=>{if(x.trim())s.add(baseLang(x));});
+  if(v.language)s.add(baseLang(v.language));
+  if(v.voice_verification?.language)s.add(baseLang(v.voice_verification.language));
+  return [...s].filter(Boolean);
+}
+function isGroup(v,g){if(g==='all')return true;const ls=voiceLanguages(v);if(g==='vi')return ls.includes('vi');if(g==='en')return ls.includes('en');return !ls.includes('vi')&&!ls.includes('en')}
+function previewUrl(v, preferred=''){const langs=v?.verified_languages||[];if(preferred){const hit=langs.find(x=>baseLang(x.language)===baseLang(preferred)&&x.preview_url);if(hit?.preview_url)return hit.preview_url;}const any=langs.find(x=>x.preview_url);return v?.preview_url||any?.preview_url||'';}
+function currentTier(){const t=String(selected()?.usage?.tier||'').trim().toLowerCase();return t||''}
+function isFreeTier(){return currentTier()==='free'}
+function sharingInfo(v){return v?.sharing||{}}
+function isCommunityVoice(v){const sh=sharingInfo(v);return v?.is_owner===false&&!!(v?.public_owner_id||sh.public_owner_id||v?.enabled_in_library||sh.status)}
+function tierAllowed(v){const a=Array.isArray(v?.available_for_tiers)?v.available_for_tiers.map(x=>String(x).toLowerCase()):[];if(!a.length)return true;const t=currentTier();if(!t)return true;return a.includes(t)||a.includes('*')}
+function voiceAccess(v,{library=false}={}){const t=currentTier(),community=library||isCommunityVoice(v),sh=sharingInfo(v);const freeAllowed=typeof v?.free_users_allowed==='boolean'?v.free_users_allowed:(typeof sh.free_users_allowed==='boolean'?sh.free_users_allowed:null);if(community&&t==='free')return{allowed:false,reason:'Voice Library không khả dụng qua API ở gói Free',source:'library',code:'FREE_LIBRARY_API'};if(t==='free'&&freeAllowed===false)return{allowed:false,reason:'Voice này không cho tài khoản Free dùng',source:community?'library':'my',code:'FREE_RESTRICTED'};if(!tierAllowed(v))return{allowed:false,reason:'Voice này yêu cầu gói cao hơn',source:community?'library':'my',code:'TIER_RESTRICTED'};return{allowed:true,reason:'API TTS khả dụng',source:community?'library':'my',code:'OK'}}
+function accessBadge(a){if(a.allowed)return'<span class="voice-access good">✅ API TTS khả dụng</span>';if(a.code==='FREE_LIBRARY_API')return'<span class="voice-access blocked">🔒 Free: Website ✅ • API ❌</span>';return'<span class="voice-access blocked">🔒 '+esc(a.reason)+'</span>'}
+async function previewVoice(id,button){const all=[...voices,...(window.libraryCache||[])];let v=all.find(x=>x.voice_id===id);if(!v)return;let url=previewUrl(v,window._voiceGroup==='vi'?'vi':window._voiceGroup==='en'?'en':'');try{if(!url){const r=await api('/v1/voices/'+encodeURIComponent(id));v={...v,...r.data};url=previewUrl(v,window._voiceGroup==='vi'?'vi':window._voiceGroup==='en'?'en':'')}if(!url){alert('Voice này không có file nghe thử từ ElevenLabs.');return}if(window._dnPreview){try{window._dnPreview.pause()}catch{}}const audio=new Audio(url);window._dnPreview=audio;if(button){button.disabled=true;button.classList.add('playing');button.textContent='⏸ Đang phát'}audio.onended=()=>{if(button){button.disabled=false;button.classList.remove('playing');button.textContent='▶ Nghe thử'}};audio.onerror=()=>{if(button){button.disabled=false;button.classList.remove('playing');button.textContent='▶ Nghe thử'}alert('Không phát được file preview.')};await audio.play()}catch(e){if(button){button.disabled=false;button.classList.remove('playing');button.textContent='▶ Nghe thử'}alert('Không thể phát preview: '+(e.message||e))}}
+function favs(){try{return JSON.parse(localStorage.getItem('dn_tts_favs')||'[]')}catch{return[]}}function isFav(id){return favs().includes(id)}function toggleFavorite(id){let f=favs();f=f.includes(id)?f.filter(x=>x!==id):[...f,id];localStorage.setItem('dn_tts_favs',JSON.stringify(f));renderMyVoices()}
+function profileMatches(p,q){if(!q)return true;return (String(p.name||'')+' '+String(p.id||'')).toLowerCase().includes(q)}
+function maskKey(k){k=String(k||'');if(!k)return 'Chưa có API key';if(k.length<=8)return '••••••••';return k.slice(0,4)+'••••••••'+k.slice(-4)}
+function fitProfileList(){const box=$('profiles');if(!box)return;box.style.height='auto';box.style.maxHeight='185px'}
+function renderProfiles(){const q=($('profileSearch')?.value||'').trim().toLowerCase();const list=profiles.filter(p=>profileMatches(p,q));$('profileCount').textContent=`${profiles.length} tài khoản`;$('profiles').innerHTML=list.length?list.map(p=>{const active=p.id===selectedId;const voiceCount=p.voices?.length||0;const tier=p.usage?.tier||'';return `<div class="profile ${active?'active':''}" onclick="selectProfile('${p.id}')"><div class="profile-main"><span class="profile-dot"></span><div class="profile-text"><b>${esc(p.name||'Account')}</b><div class="profile-meta"><span class="profile-pill">${voiceCount} voices</span>${tier?`<span class="profile-pill">${esc(tier)}</span>`:''}${active?'<span class="profile-pill">Đang dùng</span>':''}</div></div></div><div class="profile-actions"><button class="profile-icon-btn" title="Sửa" onclick="event.stopPropagation();editProfile('${p.id}')">✏️</button></div></div>`}).join(''):`<div class="profile-empty">${profiles.length?'Không tìm thấy tài khoản.':'Chưa có tài khoản. Bấm “＋ Thêm tài khoản” để bắt đầu.'}</div>`;renderProfileSelectedInfo();fitProfileList();renderDashboardStats()}
+function openProfileForm(editId=null){$('profileForm').classList.remove('hidden');$('profileFormTitle').textContent=editId?'✏️ Sửa tài khoản':'➕ Thêm tài khoản mới';$('profileForm').dataset.editId=editId||'';if(editId){const p=profiles.find(x=>x.id===editId);if(!p)return;$('pname').value=p.name||'';$('pkey').value=p.key||'';$('remember').checked=p.persist!==false}else{$('pname').value='';$('pkey').value='';$('remember').checked=true;$('pname').value=`Account ${profiles.length+1}`}setTimeout(()=>$('pname').focus(),30)}
+function closeProfileForm(){$('profileForm').classList.add('hidden');$('profileForm').dataset.editId='';$('pname').value='';$('pkey').value='';$('remember').checked=true}
+function toggleProfileKey(){const x=$('pkey');x.type=x.type==='password'?'text':'password'}
+function editProfile(id){openProfileForm(id)}
+function saveProfileForm(){const name=$('pname').value.trim(),key=$('pkey').value.trim(),editId=$('profileForm').dataset.editId;if(!name||!key)return alert('Nhập tên hồ sơ và API key.');if(editId){const p=profiles.find(x=>x.id===editId);if(!p)return;const keyChanged=p.key!==key;p.name=name;p.key=key;p.persist=$('remember').checked;if(keyChanged)p.usage=null;save();closeProfileForm();renderProfiles();selectProfile(p.id)}else{const p={id:crypto.randomUUID(),name,key,voices:[],hiddenVoices:[],usage:null,persist:$('remember').checked};profiles.push(p);save();closeProfileForm();selectProfile(p.id)}}
+function addProfile(){openProfileForm()}
+function renderProfileSelectedInfo(){const box=$('profileSelectedInfo');if(!box)return;const p=selected();if(!p){box.innerHTML='Chọn một tài khoản để xem thông tin.';return}box.innerHTML=`<strong>Đang chọn:</strong> ${esc(p.name)}<br><span>API: ${esc(maskKey(p.key))}</span><br><span>${p.voices?.length||0} voices • ${p.usage?.tier?esc(p.usage.tier):'Chưa kiểm tra usage'}</span>`}
+function selectProfile(id){selectedId=id;selectedVoice=null;const p=selected();if(p&&!Array.isArray(p.hiddenVoices))p.hiddenVoices=[];renderProfiles();loadUsage();voices=p?.voices||[];populateMyLanguage();renderMyVoices();renderSelectedBox()}
+function removeProfile(){const p=selected();if(!p)return alert('Chọn hồ sơ.');if(!confirm(`Xóa hồ sơ “${p.name}” khỏi trình duyệt?\n\nThao tác này chỉ xóa profile và API key đã lưu trong app, không xóa tài khoản ElevenLabs.`))return;profiles=profiles.filter(x=>x.id!==p.id);save();selectedId=profiles[0]?.id||null;voices=[];selectedVoice=null;renderProfiles();if(selectedId)selectProfile(selectedId);else{$('usage').textContent='Chưa có hồ sơ.';$('voices').innerHTML='';renderSelectedBox()}}
+async function api(path,options={}){const p=selected();if(!p)throw new Error('Chưa chọn hồ sơ.');options.headers=Object.assign({'xi-api-key':p.key,'Content-Type':'application/json'},options.headers||{});const r=await fetch('https://api.elevenlabs.io'+path,options);const ct=r.headers.get('content-type')||'';let data;if(ct.includes('application/json')){try{data=await r.json()}catch{data={}}}else data=await r.blob();if(!r.ok){let msg=data?.detail?.message||data?.detail?.status||data?.detail||`HTTP ${r.status}`;if(typeof msg!=='string')msg=JSON.stringify(msg);const e=new Error(msg);e.status=r.status;e.data=data;throw e}return{data,headers:r.headers,status:r.status}}
+async function testKey(){try{$('usage').textContent='Đang kiểm tra...';const r=await api('/v1/user/subscription');showUsage(r.data);return true}catch(e){$('usage').innerHTML='<span class="bad">'+esc(e.message)+'</span>';return false}}
+function showUsage(s){const p=selected();if(!p)return;p.usage=s;save();const used=s.character_count||0,limit=s.character_limit||0,remain=Math.max(0,limit-used),pct=limit?Math.min(100,used/limit*100):0;$('usage').innerHTML=`Tier: <b>${esc(s.tier||'')}</b><br>Đã dùng: ${used.toLocaleString()} / ${limit.toLocaleString()} ký tự<br>Còn lại: ${remain.toLocaleString()}`;$('usagebar').style.width=pct+'%'}
+async function loadUsage(){const p=selected();if(!p){$('usage').textContent='Chọn hồ sơ.';return}if(p.usage)showUsage(p.usage);else await testKey()}
+async function syncVoices(){const p=selected();if(!p)return alert('Chọn hồ sơ.');$('voiceStatus').textContent='Đang tải toàn bộ My Voices...';try{let all=[],token='';for(let i=0;i<50;i++){const q=token?`?page_size=100&next_page_token=${encodeURIComponent(token)}`:'?page_size=100';const r=await api('/v2/voices'+q);all.push(...(r.data.voices||[]));if(!r.data.has_more||!r.data.next_page_token)break;token=r.data.next_page_token}p.voices=all;if(!Array.isArray(p.hiddenVoices))p.hiddenVoices=[];save();voices=all;window._voiceGroup=window._voiceGroup||'all';renderProfiles();populateMyLanguage();renderMyVoices();$('voiceStatus').innerHTML=`<span class="ok">Đã tải ${all.length} My Voices.</span> <span class="tiny">Chọn Việt/English/Khác để lọc.</span>`}catch(e){$('voiceStatus').innerHTML='<span class="bad">'+esc(e.message)+'</span>'}}
+function populateMyLanguage(){const sel=$('voiceLang');if(!sel)return;const old=sel.value||'all',counts={};(voices||[]).forEach(v=>voiceLanguages(v).forEach(l=>counts[l]=(counts[l]||0)+1));const arr=Object.keys(counts).sort((a,b)=>(a==='vi'?-2:a==='en'?-1:0)-(b==='vi'?-2:b==='en'?-1:0)||langName(a).localeCompare(langName(b)));sel.innerHTML='<option value="all">🌐 Tất cả ngôn ngữ</option>'+arr.map(c=>`<option value="${esc(c)}">${esc(langName(c))} (${counts[c]})</option>`).join('');if(arr.includes(old))sel.value=old}
+function setVoiceGroup(g){window._voiceGroup=g;['All','Vi','En','Other'].forEach(x=>$('fg'+x)?.classList.remove('active'));const m={all:'fgAll',vi:'fgVi',en:'fgEn',other:'fgOther'};$(m[g]).classList.add('active');$('voiceLang').value='all';renderMyVoices()}
+function hiddenIds(){const p=selected();return p?.hiddenVoices||[]}
+function isHidden(id){return hiddenIds().includes(id)}
+function hideVoice(id){const p=selected();if(!p)return; p.hiddenVoices=p.hiddenVoices||[]; if(!p.hiddenVoices.includes(id))p.hiddenVoices.push(id); save(); if(selectedVoice===id){selectedVoice=null;renderSelectedBox()} showHidden=false; renderMyVoices()}
+function restoreVoice(id){const p=selected();if(!p)return;p.hiddenVoices=(p.hiddenVoices||[]).filter(x=>x!==id);save();renderMyVoices()}
+function showHiddenVoices(){showHidden=!showHidden;renderMyVoices()}
+function clearHiddenVoices(){const p=selected();if(!p)return;p.hiddenVoices=[];save();showHidden=false;renderMyVoices()}
+function renderMyVoices(){const p=selected();voices=p?.voices||[];populateMyLanguage();const q=$('voiceSearch').value.trim().toLowerCase(),g=window._voiceGroup||'all',lang=$('voiceLang').value,gender=$('voiceGender').value,sort=$('voiceSort').value;let arr=voices.filter(v=>{const l=v.labels||{},ls=voiceLanguages(v),hay=(JSON.stringify(v)+' '+ls.map(langName).join(' ')).toLowerCase(),gg=String(l.gender||'').toLowerCase();const gok=gender==='all'||(gender==='female'?gg==='female':gender==='male'?gg==='male':!['female','male'].includes(gg));const hidden=isHidden(v.voice_id);return isGroup(v,g)&&gok&&(lang==='all'||ls.includes(lang))&&(!q||hay.includes(q))&&(showHidden?hidden:!hidden)});if(sort==='name')arr.sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')));else arr.sort((a,b)=>(b.created_at_unix||0)-(a.created_at_unix||0));const vc=voices.filter(v=>isGroup(v,'vi')).length,ec=voices.filter(v=>isGroup(v,'en')).length,oc=voices.length-vc-ec;const hiddenCount=voices.filter(v=>isHidden(v.voice_id)).length;$('voiceStatus').innerHTML=`<span class="ok">${arr.length}</span> đang hiển thị / ${voices.length} • 🇻🇳 ${vc} • 🇺🇸 ${ec} • 🌍 ${oc}${hiddenCount?` • 👁️ ${hiddenCount} ẩn`:''}`;$('voices').innerHTML=arr.map(v=>renderVoiceCard(v,false)).join('')||`<div class="empty">${showHidden?'Không có voice nào đang ẩn với bộ lọc này.':'Không có voice phù hợp. Hãy đổi bộ lọc hoặc tải lại voices.'}</div>`}
+
+function renderVoiceCard(v,library=false){const id=String(v.voice_id||''),labels=v.labels||{},info=[labels.accent,labels.gender,labels.age,labels.use_case].filter(Boolean).join(' • '),ls=voiceLanguages(v),chips=ls.slice(0,8).map(x=>`<span class="chip">${esc(langName(x))}</span>`).join(''),url=previewUrl(v,window._voiceGroup==='vi'?'vi':window._voiceGroup==='en'?'en':''),selected=selectedVoice===id?'selected':'',star=isFav(id)?'★':'☆',access=voiceAccess(v,{library}),community=library||isCommunityVoice(v),sourceBadge=community?'<span class="source-badge library">🌍 Voice Library</span>':'<span class="source-badge my">🎙️ My Voices</span>',previewBtn=`<button class="preview-btn" onclick="event.stopPropagation();previewVoice('${id.replace(/'/g,"\\'")}',this)">▶ Nghe thử</button>`;let selectBtn='',manage='',add='';if(library){const owner=v.public_owner_id||'';add=access.allowed?`<button class="green" onclick="event.stopPropagation();addLibraryVoice('${id.replace(/'/g,"\\'")}','${owner.replace(/'/g,"\\'")}','${String(v.name||'Voice').replace(/'/g,"\\'")}')">＋ Thêm vào My Voices</button>`:`<button class="disabled-btn" disabled title="${esc(access.reason)}">🔒 Chỉ dùng website</button>`}else{selectBtn=access.allowed?`<button class="select-btn" onclick="event.stopPropagation();pickVoice('${id.replace(/'/g,"\\'")}')">Chọn</button>`:`<button class="disabled-btn" disabled title="${esc(access.reason)}">🔒 Không dùng API</button>`;if(isHidden(id))manage=`<button class="restore-btn" onclick="event.stopPropagation();restoreVoice('${id.replace(/'/g,"\\'")}')">↩️ Hiện lại</button>`;else manage=`<button class="hide-btn" onclick="event.stopPropagation();hideVoice('${id.replace(/'/g,"\\'")}')">👁️ Ẩn</button><button class="delete-btn" onclick="event.stopPropagation();deleteVoiceFromElevenLabs('${id.replace(/'/g,"\\'")}','${String(v.name||'Voice').replace(/'/g,"\\'")}')">🗑 Xóa</button>`}const blockNote=!access.allowed?`<div class="voice-block-note">${esc(access.reason)}${access.code==='FREE_LIBRARY_API'?`<br><a href="https://elevenlabs.io/app/voice-library" target="_blank" rel="noopener">Mở Voice Library trên ElevenLabs ↗</a>`:''}</div>`:'';const click=access.allowed&&!library?`onclick="pickVoice('${id.replace(/'/g,"\\'")}')"`:'';return `<div class="voice ${selected}"><div class="voice-top"><div ${click}><b>${esc(v.name||'Unnamed')}</b><small>${esc(v.category||'')} ${esc(info)}</small><div class="source-row">${sourceBadge}${accessBadge(access)}</div></div><button class="fav" title="Yêu thích" onclick="event.stopPropagation();toggleFavorite('${id.replace(/'/g,"\\'")}')">${star}</button></div><div class="langchips">${chips||'<span class="chip">Ngôn ngữ chưa khai báo</span>'}</div>${v.description?`<small>${esc(v.description).slice(0,180)}</small>`:''}<div class="voice-actions">${previewBtn}${selectBtn}${manage}${add}</div>${blockNote}${!url?'<div class="voice-preview-note">ℹ️ Không có preview sẵn.</div>':''}</div>`}
+
+async function deleteVoiceFromElevenLabs(id,name){const p=selected();if(!p)return alert('Chọn hồ sơ ElevenLabs.');const ok=confirm(`XÓA VĨNH VIỄN voice "${name}" khỏi ElevenLabs?\n\nĐây KHÔNG phải là thao tác ẩn trong app. ElevenLabs xem Delete voice là thao tác không thể hoàn tác. Nếu đây là voice từ Voice Library và voice gốc vẫn còn được chia sẻ, bạn có thể tìm và thêm lại; nếu voice đã bị gỡ khỏi Library thì có thể không thêm lại được.\n\nBấm OK để xóa thật.`);if(!ok)return;try{$('voiceStatus').innerHTML='<span class="warn">Đang xóa voice khỏi ElevenLabs...</span>';await api('/v1/voices/'+encodeURIComponent(id),{method:'DELETE'});if(p.hiddenVoices)p.hiddenVoices=p.hiddenVoices.filter(x=>x!==id);p.voices=(p.voices||[]).filter(v=>v.voice_id!==id);save();voices=p.voices; if(selectedVoice===id){selectedVoice=null;renderSelectedBox()}renderProfiles();renderMyVoices();$('voiceStatus').innerHTML='<span class="ok">Đã xóa voice khỏi ElevenLabs. Danh sách đã cập nhật.</span>';}catch(e){$('voiceStatus').innerHTML='<span class="bad">Không thể xóa voice: '+esc(e.message||e)+'</span>';alert('Không thể xóa voice.\n\n'+(e.message||e));}}
+
+function pickVoice(id){const v=[...voices,...(window.libraryCache||[])].find(x=>x.voice_id===id);if(!v)return;const a=voiceAccess(v,{library:false});if(!a.allowed){selectedVoice=null;renderSelectedBox();renderMyVoices();$('status').innerHTML='<span class="warn">🔒 '+esc(a.reason)+'</span>';return}selectedVoice=id;if(v&&voiceLanguages(v).includes('vi')&&$('model').value==='eleven_multilingual_v2')$('model').value='eleven_flash_v2_5';renderMyVoices();renderLibraryCache();renderSelectedBox()}
+function renderSelectedBox(){const v=[...voices,...(window.libraryCache||[])].find(x=>x.voice_id===selectedVoice);renderVoiceDetail(v||null)}
+function renderVoiceDetail(v){
+  const nameBox=$('selectedVoiceSummary'), metaBox=$('selectedVoiceMeta');
+  if(!nameBox || !metaBox)return;
+  if(!v){
+    nameBox.innerHTML='Chưa chọn voice.';
+    metaBox.textContent='Chọn một giọng đọc ở cột bên phải.';
+    return;
+  }
+  const ls=voiceLanguages(v).map(langName).join(', ')||'Chưa rõ';
+  const a=voiceAccess(v,{library:false});
+  nameBox.innerHTML=`<b>⭐ ${esc(v.name||'Unnamed')}</b><div class="tiny" style="margin-top:4px">${esc(v.voice_id)}</div>`;
+  metaBox.innerHTML=`${esc(ls)} • ${accessBadge(a)}`;
+}
+async function loadSelectedVoiceSettings(){const p=selected(),v=[...voices,...(window.libraryCache||[])].find(x=>x.voice_id===selectedVoice);if(!p||!v)return alert('Chọn voice trước.');try{$('status').textContent='Đang tải cài đặt voice...';const r=await api('/v1/voices/'+encodeURIComponent(v.voice_id)+'/settings');const st=r.data||{};$('speed').value=Number(st.speed??$('speed').value);$('stability').value=Number(st.stability??$('stability').value);$('similarity').value=Number(st.similarity_boost??$('similarity').value);$('style').value=Number(st.style??$('style').value);updateCount();renderVoiceDetail(v);$('status').innerHTML='<span class="ok">✅ Đã nạp cài đặt của voice.</span>'}catch(e){$('status').innerHTML='<span class="bad">Không nạp được cài đặt: '+esc(e.message||e)+'</span>'}}
+async function saveSelectedVoiceSettings(){const p=selected(),v=[...voices,...(window.libraryCache||[])].find(x=>x.voice_id===selectedVoice);if(!p||!v)return alert('Chọn voice trước.');const a=voiceAccess(v,{library:false});if(!a.allowed)return alert('Voice này không có quyền API để lưu cài đặt.');try{$('status').textContent='Đang lưu cài đặt voice...';await api('/v1/voices/'+encodeURIComponent(v.voice_id)+'/settings/edit',{method:'POST',body:JSON.stringify({stability:Number($('stability').value),use_speaker_boost:true,similarity_boost:Number($('similarity').value),style:Number($('style').value),speed:Number($('speed').value)})});$('status').innerHTML='<span class="ok">✅ Đã lưu cài đặt voice trên ElevenLabs.</span>';renderVoiceDetail(v)}catch(e){$('status').innerHTML='<span class="bad">Không lưu được cài đặt: '+esc(e.message||e)+'</span>'}}
+async function copySelectedVoiceId(){if(!selectedVoice)return alert('Chưa chọn voice.');try{await navigator.clipboard.writeText(selectedVoice);$('status').innerHTML='<span class="ok">✅ Đã sao chép Voice ID.</span>'}catch{alert(selectedVoice)}}
+function splitText(text,max){text=text.trim();if(text.length<=max)return[text];const sentences=text.split(/(?<=[.!?。！？])\s+/),out=[];let cur='';for(const s of sentences){if(!s)continue;if((cur+' '+s).trim().length<=max)cur=(cur+' '+s).trim();else{if(cur)out.push(cur);cur=s}}if(cur)out.push(cur);return out}
+function updateCount(){const n=$('text').value.length,max=$('model').value==='eleven_multilingual_v2'?10000:20000;$('count').textContent=n.toLocaleString()+' ký tự';$('estimate').textContent=Math.max(1,Math.ceil(n/max))+' đoạn dự kiến'}
+$('text').addEventListener('input',updateCount);$('model').addEventListener('change',updateCount);['speed','stability','similarity','style'].forEach(id=>$(id).addEventListener('input',()=>renderVoiceDetail([...voices,...(window.libraryCache||[])].find(x=>x.voice_id===selectedVoice)||null)));
+
+function initLibraryLang(){const s=$('libLang');const list=[['vi','🇻🇳 Tiếng Việt'],['en','🇺🇸 English'],['ja','🇯🇵 日本語'],['zh','🇨🇳 中文'],['ko','🇰🇷 한국어'],['de','🇩🇪 Deutsch'],['fr','🇫🇷 Français'],['es','🇪🇸 Español'],['pt','🇵🇹 Português'],['it','🇮🇹 Italiano'],['id','🇮🇩 Bahasa Indonesia'],['th','🇹🇭 ไทย'],['ar','🇸🇦 العربية'],['ru','🇷🇺 Русский'],['nl','🇳🇱 Nederlands'],['tr','🇹🇷 Türkçe'],['pl','🇵🇱 Polski'],['sv','🇸🇪 Svenska'],['fi','🇫🇮 Suomi'],['da','🇩🇰 Dansk'],['no','🇳🇴 Norsk'],['cs','🇨🇿 Čeština'],['el','🇬🇷 Ελληνικά'],['ro','🇷🇴 Română'],['uk','🇺🇦 Українська'],['hu','🇭🇺 Magyar'],['bg','🇧🇬 Български'],['hr','🇭🇷 Hrvatski'],['sk','🇸🇰 Slovenčina'],['ms','🇲🇾 Bahasa Melayu'],['ta','🇮🇳 தமிழ்'],['tl','🇵🇭 Filipino']];s.innerHTML=list.map(x=>`<option value="${x[0]}">${x[1]}</option>`).join('')}
+function setLibraryLanguage(mode){libraryMode=mode;['tabVi','tabEn','tabOther'].forEach(id=>$(id).classList.remove('active'));$(mode==='vi'?'tabVi':mode==='en'?'tabEn':'tabOther').classList.add('active');if(mode==='vi')$('libLang').value='vi';else if(mode==='en')$('libLang').value='en';else if($('libLang').value==='vi'||$('libLang').value==='en')$('libLang').value='ja';libraryPage=0;loadLibrary()}
+function clearLibrarySearch(){$('libSearch').value='';$('libGender').value='';$('libSort').value='trending';libraryPage=0;loadLibrary()}
+function normalizeSearch(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim()}
+function buildLibraryQuery(includeSearch=true){const p=new URLSearchParams();p.set('page_size','100');p.set('page',String(libraryPage));p.set('sort',$('libSort').value);const lang=$('libLang').value;if(lang)p.set('language',lang);const g=$('libGender').value;if(g)p.set('gender',g);const s=$('libSearch').value.trim();if(includeSearch&&s)p.set('search',s);return '?'+p.toString()}
+async function loadLibrary(){if(libraryMode==='other'&&['vi','en'].includes($('libLang').value))return;if(isFreeTier())$('libraryStatus').innerHTML='<span class="warn">⚠️ Profile Free: Voice Library không dùng được qua API. V10 vẫn có thể hiển thị dữ liệu nếu endpoint trả về, nhưng sẽ khóa TTS/Thêm.</span>';else $('libraryStatus').innerHTML='<span class="loading">Đang tìm Voice Library...</span>';$('libraryVoices').innerHTML='';try{
+  const term=$('libSearch').value.trim();
+  let r=await api('/v1/shared-voices'+buildLibraryQuery(true));
+  let list=r.data.voices||[];
+  // Nếu tìm theo tên/từ khóa mà API trả 0, tự động tải trang ngôn ngữ hiện tại rồi tìm không dấu ở phía trình duyệt.
+  if(term && !list.length){
+    const fallback=await api('/v1/shared-voices'+buildLibraryQuery(false));
+    const all=fallback.data.voices||[];
+    const q=normalizeSearch(term);
+    list=all.filter(v=>normalizeSearch([v.name,v.description,v.accent,v.gender,v.use_case,v.descriptive].filter(Boolean).join(' ')).includes(q));
+    r={data:{...fallback.data,voices:list}};
+    $('libraryStatus').innerHTML=`<span class="warn">Không có kết quả trực tiếp cho “${esc(term)}”. Đã thử tìm không dấu trên ${all.length} voice của ngôn ngữ này.</span>`;
+  }
+  window.libraryCache=list;libraryHasMore=!!r.data.has_more && !term;$('libraryStatus').innerHTML ||= '';
+  if(!term || list.length){$('libraryStatus').innerHTML=`<span class="ok">Tìm thấy ${r.data.total_count??list.length} voice phù hợp.</span> Trang ${libraryPage+1}, hiển thị ${list.length}.`;}
+  renderLibraryCache();updatePager();
+}catch(e){window.libraryCache=[];renderLibraryCache();$('libraryStatus').innerHTML='<span class="bad">'+esc(e.message)+'</span><div class="tiny">Nếu tài khoản/gói không có quyền Voice Library API, hãy mở Voice Library trên ElevenLabs hoặc dùng My Voices.</div>';updatePager()}}
+function renderLibraryCache(){const list=window.libraryCache||[];$('libraryVoices').innerHTML=list.map(v=>renderVoiceCard(v,true)).join('')||'<div class="empty">Không có voice phù hợp. Hãy xóa ô tìm kiếm để xem toàn bộ voice tiếng Việt, hoặc đổi từ khóa. Tên voice có thể không trùng với tên bạn đang nghĩ tới.</div>'}
+function updatePager(){$('libPrev').disabled=libraryPage<=0;$('libNext').disabled=!libraryHasMore;$('libPageInfo').textContent='Trang '+(libraryPage+1)}
+function changeLibraryPage(delta){const n=libraryPage+delta;if(n<0||delta>0&&!libraryHasMore)return;libraryPage=n;loadLibrary();window.scrollTo({top:$('libraryVoices').getBoundingClientRect().top+window.scrollY-100,behavior:'smooth'})}
+async function addLibraryVoice(voiceId,ownerId,name){const lib=(window.libraryCache||[]).find(v=>v.voice_id===voiceId)||{},a=voiceAccess(lib,{library:true});if(!a.allowed){$('libraryStatus').innerHTML=`<span class="warn">🔒 ${esc(a.reason)}. Hãy mở Voice Library trên website ElevenLabs để dùng voice này trực tiếp.</span>`;return}try{$('libraryStatus').textContent='Đang thêm voice vào My Voices...';await api(`/v1/voices/add/${encodeURIComponent(ownerId)}/${encodeURIComponent(voiceId)}`,{method:'POST',body:JSON.stringify({new_name:name,bookmarked:true})});$('libraryStatus').innerHTML='<span class="ok">✅ Đã thêm voice. Đang tải lại My Voices...</span>';await syncVoices()}catch(e){$('libraryStatus').innerHTML='<span class="bad">Không thêm được: '+esc(e.message)+'</span>'}}
+
+
+let viVoiceDescription='Native Vietnamese male narrator from Vietnam, middle-aged, warm, calm, deep, natural northern Vietnamese accent, clear articulation, suitable for emotional storytelling and documentary narration.';
+function openVietnameseFreeVoice(){
+  if(!selected())return alert('Chọn hồ sơ ElevenLabs trước.');
+  const m=$('viVoiceModal');if(!m)return;
+  m.classList.remove('hidden');m.setAttribute('aria-hidden','false');
+  $('viStatus').textContent='Sẵn sàng. Hãy tạo voice trên website ElevenLabs rồi tải lại My Voices.';
+  if(!$('viVoiceName').value.trim())$('viVoiceName').value='Dung Nguyen - Nam kể chuyện ấm áp';
+  document.body.style.overflow='hidden';
+}
+function closeVietnameseFreeVoice(){const m=$('viVoiceModal');if(m){m.classList.add('hidden');m.setAttribute('aria-hidden','true')}document.body.style.overflow='';}
+window.addEventListener('keydown',e=>{if(e.key==='Escape'){const m=$('viVoiceModal');if(m&&!m.classList.contains('hidden'))closeVietnameseFreeVoice()}});
+function chooseViPreset(btn){
+  document.querySelectorAll('.vi-preset').forEach(x=>x.classList.remove('active'));btn.classList.add('active');
+  viVoiceDescription=btn.dataset.desc||'';$('viVoiceDesc').value=viVoiceDescription;
+  if(!$('viVoiceName').value.trim())$('viVoiceName').value='Dung Nguyen - '+btn.textContent.replace(/^\S+\s*/,'').trim();
+}
+function openVietnameseVoiceDesign(){
+  const url='https://elevenlabs.io/voice-design';window.open(url,'_blank','noopener,noreferrer');
+  $('viStatus').innerHTML='<span class="ok">✅ Đã mở Voice Design trên ElevenLabs. Tạo voice → Save vào My Voices → quay lại đây và bấm “Tải lại My Voices”.</span>';
+}
+async function copyTextSafe(text,success){
+  try{await navigator.clipboard.writeText(text);$('viStatus').innerHTML='<span class="ok">✅ '+esc(success)+'</span>'}
+  catch{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();$('viStatus').innerHTML='<span class="ok">✅ '+esc(success)+'</span>'}
+}
+function copyViPrompt(){copyTextSafe($('viVoiceDesc')?.value.trim()||viVoiceDescription,'Đã copy mô tả Voice Design.');}
+function copyViPreview(){copyTextSafe($('viVoiceText')?.value.trim()||'','Đã copy đoạn preview tiếng Việt.');}
+async function reloadVietnameseVoices(){
+  closeVietnameseFreeVoice();setVoiceGroup('vi');await syncVoices();setVoiceGroup('vi');
+  $('voiceStatus').innerHTML='<span class="ok">✅ Đã tải lại My Voices. Bộ lọc Việt đang được bật.</span>';
+}
+
+async function generate(){const p=selected();if(!p)return alert('Chọn hồ sơ ElevenLabs.');if(!selectedVoice)return alert('Chọn voice.');const chosen=[...voices,...(window.libraryCache||[])].find(v=>v.voice_id===selectedVoice),access=voiceAccess(chosen||{},{library:false});if(!access.allowed){$('status').innerHTML='<span class="warn">🔒 '+esc(access.reason)+'</span>';return}const text=$('text').value.trim();if(!text)return alert('Nhập nội dung.');const model=$('model').value,parts=splitText(text,model==='eleven_multilingual_v2'?10000:20000);$('generate').disabled=true;$('results').innerHTML='';$('resultsToolbar').classList.add('hidden');window._generatedResults=[];$('status').textContent=`Đang tạo 0/${parts.length}...`;try{for(let i=0;i<parts.length;i++){ $('status').textContent=`Đang tạo ${i+1}/${parts.length}...`;const payload={text:parts[i],model_id:model,voice_settings:{stability:Number($('stability').value),similarity_boost:Number($('similarity').value),style:Number($('style').value),speed:Number($('speed').value)}};const langs=voiceLanguages(chosen||{}),textLang=langs.find(x=>baseLang(x)==='vi')||langs.find(x=>baseLang(x)==='en')||langs[0]||'';if(textLang)payload.language_code=baseLang(textLang);const format=$('format').value,r=await api(`/v1/text-to-speech/${encodeURIComponent(selectedVoice)}?output_format=${encodeURIComponent(format)}`,{method:'POST',body:JSON.stringify(payload),headers:{'Accept':'audio/mpeg'}}),blob=r.data,url=URL.createObjectURL(blob),ext=/\.([a-z0-9]+)_/i.exec(format)?.[1]||(/wav/i.test(format)?'wav':'mp3'),filename=`DungNguyen_TTS_${String(i+1).padStart(3,'0')}.${ext}`;window._generatedResults.push({blob,url,filename,part:parts[i]});const box=document.createElement('div');box.className='result';box.innerHTML=`<div class="result-title"><b>🎧 Đoạn ${i+1}</b><span class="result-meta">${parts[i].length.toLocaleString()} ký tự • ${ext.toUpperCase()}</span></div>`;const audio=document.createElement('audio');audio.controls=true;audio.preload='metadata';audio.src=url;box.appendChild(audio);const acts=document.createElement('div');acts.className='result-actions';acts.innerHTML='<button class="blue" type="button">▶ Phát audio</button><button class="download-btn secondary-download" type="button">⬇️ Tải về</button>';box.appendChild(acts);const playBtn=acts.querySelector('button:first-child'),dlBtn=acts.querySelector('button:last-child');playBtn.onclick=async()=>{try{if(audio.paused){if(window._dnResultAudio&&window._dnResultAudio!==audio){try{window._dnResultAudio.pause()}catch{}}window._dnResultAudio=audio;await audio.play()}else audio.pause()}catch(err){alert('Không thể phát audio. Hãy bấm Play trực tiếp trên thanh audio.')}};audio.onplay=()=>playBtn.textContent='⏸ Tạm dừng';audio.onpause=()=>playBtn.textContent='▶ Phát audio';audio.onended=()=>playBtn.textContent='▶ Phát audio';dlBtn.onclick=()=>downloadBlob(url,filename);$('results').appendChild(box)}$('resultsSummary').textContent=`Đã tạo ${window._generatedResults.length} file`;$('resultsToolbar').classList.remove('hidden');$('status').innerHTML=`<span class="ok">✅ Hoàn tất ${parts.length} đoạn • Có thể phát hoặc tải từng file.</span>`;await testKey();addHistory({time:Date.now(),voice:selectedVoice,chars:text.length,parts:parts.length,model})}catch(e){const msg=String(e.message||'');if(e.status===401)$('status').innerHTML='<span class="bad">❌ API key sai hoặc hết hạn.</span>';else if(e.status===403||/not available for free|free users|voice library|permission/i.test(msg))$('status').innerHTML='<span class="warn">🔒 Voice hoặc API hiện không được phép cho profile này. Hãy chọn voice có nhãn ✅ API TTS khả dụng.</span>';else if(e.status===429||/quota|limit|credits/i.test(msg))$('status').innerHTML='<span class="warn">⚠️ Tài khoản hiện tại không đủ quota. Hãy chọn hồ sơ khác.</span>';else $('status').innerHTML='<span class="bad">'+esc(msg)+'</span>'}finally{$('generate').disabled=false}}
+function downloadBlob(url,filename){const a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove()}
+function downloadAllResults(){const items=window._generatedResults||[];if(!items.length)return;items.forEach((item,i)=>{setTimeout(()=>{const a=document.createElement('a');a.href=item.url;a.download=item.filename;document.body.appendChild(a);a.click();a.remove()},i*250)})}
+
+function addHistory(x){const h=JSON.parse(localStorage.getItem('dn_tts_history')||'[]');h.unshift(x);localStorage.setItem('dn_tts_history',JSON.stringify(h.slice(0,50)));renderHistory()}function renderHistory(){const h=JSON.parse(localStorage.getItem('dn_tts_history')||'[]');$('history').innerHTML=h.length?h.map(x=>`<div><b>${esc(x.voice)}</b> • ${esc(x.model)} • ${Number(x.chars).toLocaleString()} ký tự • ${x.parts} đoạn<div class="tiny">${new Date(x.time).toLocaleString('vi-VN')}</div></div>`).join(''):'Chưa có lịch sử.';renderDashboardStats()}function clearHistory(){if(!confirm('Xóa toàn bộ lịch sử TTS lưu trong trình duyệt?'))return;localStorage.removeItem('dn_tts_history');renderHistory();$('status').innerHTML='<span class="ok">✅ Đã xóa lịch sử.</span>'}function clearText(){$('text').value='';updateCount();$('status').textContent='Đã xóa nội dung.'}
+function renderDashboardStats(){const hist=JSON.parse(localStorage.getItem('dn_tts_history')||'[]');const start=new Date();start.setHours(0,0,0,0);const today=hist.filter(x=>Number(x.time)>=start.getTime());const totalAudio=hist.reduce((n,x)=>n+Number(x.parts||0),0);$('statProfiles')&&($('statProfiles').textContent=profiles.length);$('statVoices')&&($('statVoices').textContent=profiles.reduce((n,p)=>n+(p.voices?.length||0),0));$('statToday')&&($('statToday').textContent=today.length);$('statAudio')&&($('statAudio').textContent=totalAudio)}
+renderProfiles();renderHistory();updateCount();initLibraryLang();window._voiceGroup='all';if(profiles.length)selectProfile(profiles[0].id);else closeProfileForm();
+(function initMouseEffects(){if(!window.matchMedia||!matchMedia('(pointer:fine)').matches)return;const g=document.createElement('div');g.className='cursor-glow';document.body.appendChild(g);let raf=0,x=0,y=0;window.addEventListener('pointermove',e=>{x=e.clientX;y=e.clientY;if(!raf){raf=requestAnimationFrame(()=>{g.style.transform=`translate(${x-75}px,${y-75}px)`;raf=0})}});})();
+</script>
+</body></html>
